@@ -18,7 +18,7 @@ To see similar projects with additional services, please visit https://github.co
 ## Requirements
 
 * [docker](https://docs.docker.com/install/)
-* [pygmy-go](https://www.github.com/pygmystack/pygmy)
+* [pygmy](https://www.github.com/pygmystack/pygmy)
 
 **OR**
 
@@ -32,16 +32,27 @@ To see similar projects with additional services, please visit https://github.co
     git clone https://github.com/lagoon-examples/drupal-base.git drupal-base && cd $_
     ```
 
-2. Make sure you don't have anything running on port 80 on the host machine (like a web server) then run `pygmy-go up`
+2. Make sure you don't have anything running on port 80 on the host machine (like a web server) then run `pygmy up`
 
 3. Build and start the build images:
 
     ```bash
-    docker-compose up -d
-    docker-compose exec cli composer install
+    docker compose up -d
+    docker compose exec cli composer install
     ```
 
-4. Visit the new site @ `http://drupal-base.docker.amazee.io`
+4. Launch your CLI to run composer & drush commands:
+    ```bash
+    docker compose exec cli bash
+    ```
+
+5. Install your Drupal site with Drush Site Install:
+
+    ```bash
+    docker compose exec cli drush si -y
+    ```
+
+6. Visit the new site @ `http://drupal10-practise.docker.amazee.io`
 
 * If any steps fail, you're safe to rerun from any point.
 Starting again from the beginning will just reconfirm the changes.
@@ -58,7 +69,7 @@ This repository is set up with a `.lando.yml` file, which allows you to use Land
     git clone https://github.com/lagoon-examples/drupal-base.git drupal-base && cd $_
     ```
 
-3. Make sure you have pygmy-go stopped. Run `pygmy stop` to be sure.
+3. Make sure you have pygmy stopped. Run `pygmy stop` to be sure.
 
 4. We already have a Lando file in this repository, so we just need to run the following command to get Lando up:
 
@@ -72,7 +83,7 @@ lando start
 lando drush si -y
 ```
 
-6. Visit the new site @ `http://drupal-base.lndo.site`
+6. Visit the new site @ `http://drupal10-practise.lndo.site`
  
 7. For more information on how to configure your site, check out the [documentation](https://docs.lando.dev/config/lagoon.html).
 
